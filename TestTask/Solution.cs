@@ -28,14 +28,20 @@ public class Solution
         }
         if (S.Length == (T.Length - 1))
         {
-            for (int index = 0; index < S.Length; index++)
+            for (int c = 0; c < T.Length; c++)
             {
-                if (S[index] != T[index] && Enumerable.SequenceEqual(S.Skip(index), T.Skip(index + 1)))
+                if (S.Length <= c || T[c] != S[c])
                 {
-                    return $"INSERT {T[index]}";
+                    if (S.Insert(c, T[c].ToString()).Equals(T))
+                    {
+                        return $"INSERT {T[c]}";
+                    }
+                    else
+                    {
+                        break;
+                    }
                 }
             }
-
         }
 
         return "IMPOSSIBLE";
